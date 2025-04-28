@@ -2,7 +2,7 @@ import streamlit as st
 
 # Sayfa konfigürasyonu
 st.set_page_config(
-    page_title="Biyogaz Veri Paneli",
+    page_title="Beyaz Piramit Biyogaz Santrali",
     page_icon="🌿",
     layout="wide",
     initial_sidebar_state="expanded"

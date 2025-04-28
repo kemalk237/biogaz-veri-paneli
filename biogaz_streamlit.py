@@ -71,19 +71,24 @@ def setup_default_users():
 def login_page():
     st.title("🔒 Kullanıcı Girişi")
 
+    # Kullanıcı adı ve şifre girişi
     username = st.text_input("Kullanıcı Adı")
     password = st.text_input("Şifre", type="password")
 
     if st.button("Giriş"):
+        # Kullanıcı doğrulaması
         role = authenticate_user(username, password)
         if role:
             st.success(f"Giriş başarılı: {username}")
+            # Login bilgilerini session_state içine kaydet
             st.session_state["login"] = True
             st.session_state["username"] = username
             st.session_state["role"] = role[0]
+            # Sayfa yenileme işlemi
             st.experimental_rerun()
         else:
             st.error("Hatalı kullanıcı adı veya şifre!")
+
 
 # ==== 4. Admin Paneli ====
 

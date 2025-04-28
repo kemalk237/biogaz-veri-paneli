@@ -1,6 +1,26 @@
 import streamlit as st
 
-st.set_page_config(page_title="Biyogaz Veri Paneli", layout="wide")
+# Sayfa konfigürasyonu
+st.set_page_config(
+    page_title="Biyogaz Veri Paneli",
+    page_icon="🌿",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-st.title("Biyogaz Veri Paneli - Hoşgeldiniz 🚀")
-st.success("Streamlit kurulumu başarılı! Artık geliştirmeye başlayabiliriz.")
+# Başlık
+st.markdown(
+    "<h1 style='text-align: center; color: #228B22;'>Biyogaz Veri Paneli 🌱</h1>",
+    unsafe_allow_html=True
+)
+
+st.write("")
+st.success("Streamlit altyapısı başarıyla hazır! Artık geliştirmeye başlayabiliriz.")
+
+# Sidebar (Yan Menü)
+with st.sidebar:
+    st.header("Menü")
+    menu_selection = st.radio("Git:", ["Günlük Veri Girişi", "Laboratuvar Girişi", "Raporlar"])
+
+# Ana Ekran Bilgilendirme
+st.info(f"Seçili Menü: **{menu_selection}**")

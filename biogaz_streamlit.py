@@ -24,7 +24,7 @@ def create_user_table():
 def add_user(username, password, role):
     conn = create_connection()
     cursor = conn.cursor()
-    hashed_pw = hashlib.sha256(password.encode()).hexdigest()
+    hashed_pw = hashlib.sha256(password.encode()).hexdigest()  # Şifreyi hash'le
     cursor.execute('INSERT OR REPLACE INTO users (username, password, role) VALUES (?, ?, ?)', (username, hashed_pw, role))
     conn.commit()
     conn.close()
@@ -32,7 +32,7 @@ def add_user(username, password, role):
 def authenticate_user(username, password):
     conn = create_connection()
     cursor = conn.cursor()
-    hashed_pw = hashlib.sha256(password.encode()).hexdigest()
+    hashed_pw = hashlib.sha256(password.encode()).hexdigest()  # Şifreyi hash'le
     cursor.execute('SELECT role FROM users WHERE username=? AND password=?', (username, hashed_pw))
     data = cursor.fetchone()
     conn.close()
@@ -71,7 +71,6 @@ def setup_default_users():
 def login_page():
     st.title("🔒 Kullanıcı Girişi")
 
-    # Kullanıcı adı ve şifre girişi
     username = st.text_input("Kullanıcı Adı")
     password = st.text_input("Şifre", type="password")
 
@@ -84,11 +83,9 @@ def login_page():
             st.session_state["login"] = True
             st.session_state["username"] = username
             st.session_state["role"] = role[0]
-            # Sayfa yenileme işlemi
-            st.experimental_rerun()
+            st.experimental_rerun()  # Sayfa yenileme işlemi
         else:
             st.error("Hatalı kullanıcı adı veya şifre!")
-
 
 # ==== 4. Admin Paneli ====
 
